@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+     
+#以下測試是否取的配置文件內容物    
+my:
+  name: Miles
+  age: 120

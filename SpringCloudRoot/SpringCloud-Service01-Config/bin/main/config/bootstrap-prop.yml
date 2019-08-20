@@ -1,0 +1,24 @@
+server:
+  port: 8890
+  
+#取得其他service設定檔案(從遠端的git)
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: C:/doc/.git
+#          uri: https://github.com/6643644/test-spring-cloud-config-server.git
+#          以上URI 可以直接下載.git路徑的直接使用
+#          username: XXXX
+#          password: XXXX
+          default-label: master
+          search-paths: properties #該git根目錄底下的子目錄
+          
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8980/eureka/

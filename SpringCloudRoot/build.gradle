@@ -1,0 +1,114 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.7.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE")
+	}
+}
+
+subprojects{
+
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	
+	// JVM 版本號要求
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	
+}
+
+project(':SpringCloud-Service01-Config'){
+	apply plugin: 'org.springframework.boot'
+	apply plugin: "io.spring.dependency-management"
+
+	repositories {
+	    mavenCentral()
+	}
+
+	dependencies {
+		compile('org.springframework.cloud:spring-cloud-config-server')
+	}
+	
+	//因為使用Spring Boot v2.1.7.RELEASE 所以必須支援spring-cloud-dependencies:Greenwich.SR1 的版本
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR1"
+		}
+	}
+}
+
+project(':SpringCloud-Service02-Eureka'){
+
+	apply plugin: 'org.springframework.boot'
+	apply plugin: "io.spring.dependency-management"
+
+	repositories {
+	    mavenCentral()
+	}
+
+	dependencies {
+		compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
+		compile('org.springframework.cloud:spring-cloud-starter-config')
+		compile('org.springframework.boot:spring-boot-starter-web')
+	}
+	
+	
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR1"
+		}
+	}
+}
+
+project(':SpringCloud-Service02-Eureka2'){
+
+	apply plugin: 'org.springframework.boot'
+	apply plugin: "io.spring.dependency-management"
+
+	repositories {
+	    mavenCentral()
+	}
+
+	dependencies {
+		compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
+		compile('org.springframework.cloud:spring-cloud-starter-config')
+		compile('org.springframework.boot:spring-boot-starter-web')
+	}
+	
+	
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR1"
+		}
+	}
+}
+
+project(':SpringCloud-Service03-Zuul'){
+
+	apply plugin: 'org.springframework.boot'
+	apply plugin: "io.spring.dependency-management"
+
+	repositories {
+	    mavenCentral()
+	}
+
+	dependencies {
+		compile('org.springframework.cloud:spring-cloud-starter-eureka')
+		compile('org.springframework.cloud:spring-cloud-starter-config')
+		compile('org.springframework.cloud:spring-cloud-starter-hystrix')
+		compile('org.springframework.cloud:spring-cloud-starter-zuul')
+		compile('org.springframework.boot:spring-boot-starter-web')
+	}
+	
+	
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR1"
+		}
+	}
+}

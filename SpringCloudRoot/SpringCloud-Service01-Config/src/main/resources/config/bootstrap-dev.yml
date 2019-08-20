@@ -1,0 +1,22 @@
+server:
+  port: 18990
+  
+#取得其他service設定檔案(從遠端的git)
+# 現在抓配置文件有一個問題，該問題就是因為properties與yml取的某些內容會無法取得，例如server.port可以在properties中取得但是yml就無法取得，該問題可能後續要研究。
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:  
+#          uri: https://github.com/6643644/test-spring-cloud-config-server
+#          username: XXXX
+#          password: XXXX
+          search-paths: ymls #該git根目錄底下的子目錄，多個可以用逗號(,)區隔ex: properties, ymls, testymls
+          uri: C:/Spring Cloud Config Server
+          
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://eureka01:28990/eureka/
